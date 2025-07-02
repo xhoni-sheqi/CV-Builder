@@ -90,14 +90,12 @@ body {
   flex: 5;
 }
 
-.date {
+.output-body .education {
+  padding: 2rem;
   display: flex;
-  gap: 2rem;
-}
-.date input {
-  width: 30%;
+  flex-direction: column;
 }
 
-.date label {
-  white-space: nowrap;
+.output-body .education .education-tab {
+  background: #f2f2f3;
 }

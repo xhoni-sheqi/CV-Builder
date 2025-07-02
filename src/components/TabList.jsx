@@ -35,7 +35,7 @@ function TabList(props) {
         <input type="text" value={props.number} onChange={props.onSetNumber} />
         <label>Address</label>
         <input
-          type="email"
+          type="text"
           value={props.address}
           onChange={props.onSetAddress}
         />
@@ -53,21 +53,39 @@ function TabList(props) {
             {openEducation ? (
               <>
                 <label>School</label>
-                <input type="text" />
+                <input
+                  type="text"
+                  value={props.school}
+                  onChange={props.onSetSchool}
+                />
                 <label>Degree</label>
-                <input type="text" />
-                <div className="date">
-                  <label>Start Date</label>
-                  <input type="text" />
-                  <label>End Date</label>
-                  <input type="text" />
-                </div>
+                <input
+                  type="text"
+                  value={props.degree}
+                  onChange={props.onSetDegree}
+                />
+                <label>Start Date</label>
+                <input
+                  value={props.startDate}
+                  onChange={props.onSetStartDate}
+                  type="date"
+                />
+                <label>End Date</label>
+                <input
+                  type="date"
+                  value={props.endDate}
+                  onChange={props.onSetEndDate}
+                />
                 <label>Location</label>
-                <input type="text" />
+                <input
+                  type="text"
+                  value={props.location}
+                  onChange={props.onSetLocation}
+                />
                 <div>
                   <Button red={true}>Delete</Button>
                   <Button onClick={handleOpenTabEducation}>Cancel</Button>
-                  <Button>Add</Button>
+                  <Button onClick={props.onAddEducation}>Add</Button>
                 </div>
               </>
             ) : (
@@ -94,12 +112,10 @@ function TabList(props) {
                 <input type="text" />
                 <label>Position Title</label>
                 <input type="text" />
-                <div className="date">
-                  <label>Start Date</label>
-                  <input type="text" />
-                  <label>End Date</label>
-                  <input type="text" />
-                </div>
+                <label>Start Date</label>
+                <input type="date" />
+                <label>End Date</label>
+                <input type="date" />
                 <label>Location</label>
                 <input type="text" />
                 <label>Description</label>
