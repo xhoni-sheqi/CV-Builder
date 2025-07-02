@@ -185,7 +185,42 @@ function App() {
     setStartDate("");
     setEndDate("");
     setLocation("");
+    setCompany("");
+    setPosition("");
+    setStartDateE("");
+    setEndDateE("");
+    setLocationE("");
+    setDescription("");
     setListEducation([]);
+    setListExperience([]);
+  };
+
+  const handleLoadExample = () => {
+    setAddress("us");
+    setFullName("Jhon Doe");
+    setNumber("343234233493");
+    setEmail("jhondoe@gmail.com");
+    setListEducation([
+      {
+        id: Date.now(),
+        school: "My School",
+        degree: "IT Diploma",
+        startDate: "1.1.2000",
+        endDate: "1.1.2004",
+        location: "us",
+      },
+    ]);
+    setListExperience([
+      {
+        id: Date.now(),
+        company: "My Work",
+        position: "IT Specialyst",
+        startDateE: "1.1.2000",
+        endDateE: "1.1.2004",
+        locationE: "e",
+        description: "us",
+      },
+    ]);
   };
 
   const outputRenders = {
@@ -203,7 +238,7 @@ function App() {
             <Button red={true} onClick={handleClear}>
               Clear All 🚮
             </Button>
-            <Button>Load Example 〄</Button>
+            <Button onClick={handleLoadExample}>Load Example 〄</Button>
           </div>
         </Tab>
         <TabList
