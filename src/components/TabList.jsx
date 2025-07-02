@@ -1,14 +1,17 @@
 import Tab from "./Tab.jsx";
 import Button from "./Button.jsx";
+import { useState } from "react";
 function TabList(props) {
+  const [openEducation, setOpenEducation] = useState(false);
+  const [openExperience, setOpenExperience] = useState(false);
+  const handleOpenTabEducation = () => {
+    setOpenEducation((prevState) => !prevState);
+  };
+  const handleOpenTabExperience = () => {
+    setOpenExperience((prevState) => !prevState);
+  };
   return (
     <div>
-      <Tab>
-        <div className="tab-btns">
-          <Button>Clear All 🚮</Button>
-          <Button>Load Example 〄</Button>
-        </div>
-      </Tab>
       {/* Personal Details */}
       <Tab>
         <h2>🧑‍✈️Personal Details</h2>
@@ -33,49 +36,59 @@ function TabList(props) {
       {/* Education Details */}
       <Tab>
         <h2>🎓Education</h2>
-        <Button>+ Educational</Button>
-        <label>School</label>
-        <input type="text" />
-        <label>Degree</label>
-        <input type="text" />
-        <div className="date">
-          <label>Start Date</label>
-          <input type="text" />
-          <label>End Date</label>
-          <input type="text" />
-        </div>
-        <label>Location</label>
-        <input type="text" />
-        <div>
-          <Button>Delete</Button>
-          <Button>Cancel</Button>
-          <Button>Add</Button>
-        </div>
+        <Button onClick={handleOpenTabEducation}>+ Educational</Button>
+        {openEducation ? (
+          <>
+            <label>School</label>
+            <input type="text" />
+            <label>Degree</label>
+            <input type="text" />
+            <div className="date">
+              <label>Start Date</label>
+              <input type="text" />
+              <label>End Date</label>
+              <input type="text" />
+            </div>
+            <label>Location</label>
+            <input type="text" />
+            <div>
+              <Button>Delete</Button>
+              <Button>Cancel</Button>
+              <Button>Add</Button>
+            </div>
+          </>
+        ) : (
+          ""
+        )}
       </Tab>
 
       {/* Experience Details */}
       <Tab>
         <h2>👷Experience</h2>
-        <Button>+ Experience</Button>
-        <label>Company Name</label>
-        <input type="text" />
-        <label>Position Title</label>
-        <input type="text" />
-        <div className="date">
-          <label>Start Date</label>
-          <input type="text" />
-          <label>End Date</label>
-          <input type="text" />
-        </div>
-        <label>Location</label>
-        <input type="text" />
-        <label>Description</label>
-        <input type="text" />
-        <div>
-          <Button>Delete</Button>
-          <Button>Cancel</Button>
-          <Button>Add</Button>
-        </div>
+        <Button onClick={handleOpenTabExperience}>+ Experience</Button>
+        {openExperience && (
+          <>
+            <label>Company Name</label>
+            <input type="text" />
+            <label>Position Title</label>
+            <input type="text" />
+            <div className="date">
+              <label>Start Date</label>
+              <input type="text" />
+              <label>End Date</label>
+              <input type="text" />
+            </div>
+            <label>Location</label>
+            <input type="text" />
+            <label>Description</label>
+            <input type="text" />
+            <div>
+              <Button>Delete</Button>
+              <Button>Cancel</Button>
+              <Button>Add</Button>
+            </div>
+          </>
+        )}
       </Tab>
     </div>
   );

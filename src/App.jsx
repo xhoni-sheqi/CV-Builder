@@ -1,6 +1,8 @@
 import { useState } from "react";
 import OutputCV from "./components/OutputCV";
 import TabList from "./components/TabList";
+import Tab from "./components/Tab";
+import Button from "./components/Button";
 
 function App() {
   const [fullName, setFullName] = useState("Jhon Doe");
@@ -19,6 +21,12 @@ function App() {
   const handleSetAddress = (e) => {
     setAddress(e.target.value);
   };
+  const handleClear = () => {
+    setAddress("");
+    setFullName("");
+    setNumber("");
+    setEmail("");
+  };
 
   const outputRenders = {
     fullName: fullName,
@@ -30,6 +38,12 @@ function App() {
   return (
     <div className="flex-container">
       <div className="left">
+        <Tab>
+          <div className="tab-btns">
+            <Button onClick={handleClear}>Clear All 🚮</Button>
+            <Button>Load Example 〄</Button>
+          </div>
+        </Tab>
         <TabList
           fullName={fullName}
           onSetFullName={handleSetFullName}
