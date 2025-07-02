@@ -40,7 +40,9 @@ function App() {
       <div className="left">
         <Tab>
           <div className="tab-btns">
-            <Button onClick={handleClear}>Clear All 🚮</Button>
+            <Button red={true} onClick={handleClear}>
+              Clear All 🚮
+            </Button>
             <Button>Load Example 〄</Button>
           </div>
         </Tab>
