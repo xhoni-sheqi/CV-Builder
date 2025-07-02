@@ -95,14 +95,16 @@ body {
   flex: 5;
 }
 
-.output-body .education {
+.output-body .education,
+.experience {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
 }
 
-.output-body .education .education-tab {
+.output-body .education .education-tab,
+.output-body .experience .experience-tab {
   background: #f2f2f3;
+  padding: 2rem;
 }
 
 .edu,

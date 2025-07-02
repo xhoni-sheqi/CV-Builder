@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useRef } from "react";
+import html2pdf from "html2pdf.js";
 import OutputCV from "./components/OutputCV";
 import TabList from "./components/TabList";
 import Tab from "./components/Tab";
@@ -95,7 +97,7 @@ function App() {
       position,
       startDateE,
       endDateE,
-      location,
+      locationE,
       description,
     };
 
@@ -230,6 +232,20 @@ function App() {
     address: address,
   };
 
+  const cvRef = useRef();
+  const handleDownloadPDF = () => {
+    const element = cvRef.current;
+    const opt = {
+      margin: 0.5,
+      filename: "my-cv.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+    };
+    html2pdf().set(opt).from(element).save();
+    console.log("clicked");
+  };
+
   return (
     <div className="flex-container">
       <div className="left">
@@ -239,6 +255,7 @@ function App() {
               Clear All 🚮
             </Button>
             <Button onClick={handleLoadExample}>Load Example 〄</Button>
+            <Button onClick={handleDownloadPDF}>Download PDF 📄</Button>
           </div>
         </Tab>
         <TabList
@@ -284,6 +301,7 @@ function App() {
       </div>
       <div className="right">
         <OutputCV
+          ref={cvRef}
           outputRenders={outputRenders}
           listEducation={listEducation}
           listExperience={listExperience}
