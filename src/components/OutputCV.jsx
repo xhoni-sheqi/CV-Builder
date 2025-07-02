@@ -1,4 +1,4 @@
-function OutputCV({ outputRenders, listEducation }) {
+function OutputCV({ outputRenders, listEducation, listExperience }) {
   return (
     <div className="output">
       <div className="output-header">
@@ -21,6 +21,24 @@ function OutputCV({ outputRenders, listEducation }) {
                   <span>{edu.startDate}</span> - <span>{edu.endDate}</span>
                 </div>
                 <p>{edu.location}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
+        {listExperience.length > 0 ? (
+          <div className="education">
+            <h1>👷 Experience</h1>
+            {listExperience.map((exp) => (
+              <div className="education-tab" key={exp.id}>
+                <h3>{exp.company}</h3>
+                <p>{exp.position}</p>
+                <div>
+                  <span>{exp.startDateE}</span> - <span>{exp.endDateE}</span>
+                </div>
+                <p>{exp.locationE}</p>
+                <p>{exp.description}</p>
               </div>
             ))}
           </div>

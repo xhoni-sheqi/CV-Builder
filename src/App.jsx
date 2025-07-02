@@ -53,6 +53,79 @@ function App() {
     setListEducation(listEducation.filter((edu) => edu.id !== id));
   };
 
+  const handleEditListEducational = (id) => {
+    const eduToEdit = listEducation.find((edu) => edu.id === id);
+    if (eduToEdit) {
+      setSchool(eduToEdit.school);
+      setDegree(eduToEdit.degree);
+      setStartDate(eduToEdit.startDate);
+      setEndDate(eduToEdit.endDate);
+      setLocation(eduToEdit.location);
+
+      setListEducation(listEducation.filter((edu) => edu.id !== id));
+    }
+  };
+
+  // experience information state
+
+  const [company, setCompany] = useState("");
+  const [position, setPosition] = useState("");
+  const [startDateE, setStartDateE] = useState("");
+  const [endDateE, setEndDateE] = useState("");
+  const [locationE, setLocationE] = useState("");
+  const [description, setDescription] = useState("");
+
+  const [listExperience, setListExperience] = useState([
+    {
+      id: Date.now(),
+      company: "My Work",
+      position: "IT Specialyst",
+      startDateE: "1.1.2000",
+      endDateE: "1.1.2004",
+      locationE: "e",
+      description: "us",
+    },
+  ]);
+
+  const handleSetListExperience = () => {
+    if (!company || !position) return;
+    const newExperience = {
+      id: Date.now(),
+      company,
+      position,
+      startDateE,
+      endDateE,
+      location,
+      description,
+    };
+
+    setListExperience([...listExperience, newExperience]);
+    setCompany("");
+    setPosition("");
+    setStartDateE("");
+    setEndDateE("");
+    setLocationE("");
+    setDescription("");
+  };
+
+  const handleDeleteListExperience = (id) => {
+    setListExperience(listExperience.filter((exp) => exp.id !== id));
+  };
+
+  const handleEditListExperience = (id) => {
+    const expToEdit = listExperience.find((exp) => exp.id === id);
+    if (expToEdit) {
+      setCompany(expToEdit.company);
+      setPosition(expToEdit.position);
+      setStartDateE(expToEdit.startDateE);
+      setEndDateE(expToEdit.endDateE);
+      setLocationE(expToEdit.locationE);
+      setDescription(expToEdit.description);
+
+      setListExperience(listExperience.filter((exp) => exp.id !== id));
+    }
+  };
+
   const handleSetFullName = (e) => {
     setFullName(e.target.value);
   };
@@ -80,6 +153,26 @@ function App() {
   };
   const handleSetLocation = (e) => {
     setLocation(e.target.value);
+  };
+
+  const handleSetCompany = (e) => {
+    setCompany(e.target.value);
+  };
+  const handleSetPosition = (e) => {
+    setPosition(e.target.value);
+  };
+
+  const handleSetStartDateE = (e) => {
+    setStartDateE(e.target.value);
+  };
+  const handleSetEndDateE = (e) => {
+    setEndDateE(e.target.value);
+  };
+  const handleSetLocationE = (e) => {
+    setLocationE(e.target.value);
+  };
+  const handleSetDescription = (e) => {
+    setDescription(e.target.value);
   };
 
   const handleClear = () => {
@@ -135,10 +228,31 @@ function App() {
           onAddEducation={handleSetListEducation}
           onDeleteEducation={handleDeleteListEducational}
           listEducation={listEducation}
+          onEditEducation={handleEditListEducational}
+          company={company}
+          position={position}
+          startDateE={startDateE}
+          endDateE={endDateE}
+          locationE={locationE}
+          description={description}
+          onSetCompany={handleSetCompany}
+          onSetPosition={handleSetPosition}
+          onSetStartDateE={handleSetStartDateE}
+          onSetEndDateE={handleSetEndDateE}
+          onSetLocationE={handleSetLocationE}
+          onSetDescription={handleSetDescription}
+          listExperience={listExperience}
+          onAddExperience={handleSetListExperience}
+          onDeleteExperience={handleDeleteListExperience}
+          onEditExperience={handleEditListExperience}
         />
       </div>
       <div className="right">
-        <OutputCV outputRenders={outputRenders} listEducation={listEducation} />
+        <OutputCV
+          outputRenders={outputRenders}
+          listEducation={listEducation}
+          listExperience={listExperience}
+        />
       </div>
     </div>
   );

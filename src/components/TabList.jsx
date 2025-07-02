@@ -22,6 +22,18 @@ function TabList(props) {
     props.onAddEducation();
     setOpenEducation((prevState) => !prevState);
   };
+  const handleEditEducational = (id) => {
+    props.onEditEducation(id);
+    setOpenEducation((prevState) => !prevState);
+  };
+  const handleAddExperience = () => {
+    props.onAddExperience();
+    setOpenExperience((prevState) => !prevState);
+  };
+  const handleEditExperience = (id) => {
+    props.onEditExperience(id);
+    setOpenExperience((prevState) => !prevState);
+  };
   return (
     <div>
       {/* Personal Details */}
@@ -58,9 +70,14 @@ function TabList(props) {
                 <div key={edu.id} className="edu">
                   <span>{edu.school}</span>
                   {/* usiamo ()=> perchè senno la funzione si avvia non appena il componente renderizza */}
-                  <Button onClick={() => props.onDeleteEducation(edu.id)}>
-                    ❌
-                  </Button>
+                  <div>
+                    <Button onClick={() => handleEditEducational(edu.id)}>
+                      ✍️
+                    </Button>
+                    <Button onClick={() => props.onDeleteEducation(edu.id)}>
+                      ❌
+                    </Button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -98,7 +115,6 @@ function TabList(props) {
                   onChange={props.onSetLocation}
                 />
                 <div>
-                  <Button red={true}>Delete</Button>
                   <Button onClick={handleOpenTabEducation}>Cancel</Button>
                   <Button onClick={handleAddEducational}>Add</Button>
                 </div>
@@ -120,25 +136,65 @@ function TabList(props) {
         </div>
         {openTabTwo ? (
           <>
+            <div className="experience-list">
+              {props.listExperience.map((exp) => (
+                <div key={exp.id} className="exp">
+                  <span>{exp.company}</span>
+                  {/* usiamo ()=> perchè senno la funzione si avvia non appena il componente renderizza */}
+                  <div>
+                    <Button onClick={() => handleEditExperience(exp.id)}>
+                      ✍️
+                    </Button>
+                    <Button onClick={() => props.onDeleteExperience(exp.id)}>
+                      ❌
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
             <Button onClick={handleOpenTabExperience}>+ Experience</Button>
             {openExperience && (
               <>
                 <label>Company Name</label>
-                <input type="text" />
+                <input
+                  value={props.company}
+                  onChange={props.onSetCompany}
+                  type="text"
+                />
                 <label>Position Title</label>
-                <input type="text" />
+                <input
+                  type="text"
+                  value={props.position}
+                  onChange={props.onSetPosition}
+                />
+
                 <label>Start Date</label>
-                <input type="date" />
+                <input
+                  type="date"
+                  value={props.startDateE}
+                  onChange={props.onSetStartDateE}
+                />
                 <label>End Date</label>
-                <input type="date" />
+                <input
+                  type="date"
+                  value={props.endDateE}
+                  onChange={props.onSetEndDateE}
+                />
                 <label>Location</label>
-                <input type="text" />
+                <input
+                  type="text"
+                  value={props.locationE}
+                  onChange={props.onSetLocationE}
+                />
                 <label>Description</label>
-                <input type="text" />
+                <input
+                  type="text"
+                  value={props.description}
+                  onChange={props.onSetDescription}
+                />
                 <div>
-                  <Button red={true}>Delete</Button>
                   <Button onClick={handleOpenTabExperience}>Cancel</Button>
-                  <Button>Add</Button>
+                  <Button onClick={handleAddExperience}>Add</Button>
                 </div>
               </>
             )}
