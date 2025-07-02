@@ -18,6 +18,10 @@ function TabList(props) {
   const handleOpenTabTwo = () => {
     setOpenTabTwo((prevState) => !prevState);
   };
+  const handleAddEducational = () => {
+    props.onAddEducation();
+    setOpenEducation((prevState) => !prevState);
+  };
   return (
     <div>
       {/* Personal Details */}
@@ -49,6 +53,17 @@ function TabList(props) {
         </div>
         {openTabOne ? (
           <>
+            <div className="educational-list">
+              {props.listEducation.map((edu) => (
+                <div key={edu.id} className="edu">
+                  <span>{edu.school}</span>
+                  {/* usiamo ()=> perchè senno la funzione si avvia non appena il componente renderizza */}
+                  <Button onClick={() => props.onDeleteEducation(edu.id)}>
+                    ❌
+                  </Button>
+                </div>
+              ))}
+            </div>
             <Button onClick={handleOpenTabEducation}>+ Educational</Button>
             {openEducation ? (
               <>
@@ -85,7 +100,7 @@ function TabList(props) {
                 <div>
                   <Button red={true}>Delete</Button>
                   <Button onClick={handleOpenTabEducation}>Cancel</Button>
-                  <Button onClick={props.onAddEducation}>Add</Button>
+                  <Button onClick={handleAddEducational}>Add</Button>
                 </div>
               </>
             ) : (

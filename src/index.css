@@ -50,6 +50,11 @@ body {
   justify-content: space-between;
 }
 
+.tab-header .educational-form {
+  border: 1px solid red;
+  padding: 2rem;
+}
+
 .tab-header p {
   font-size: 1.6rem;
   cursor: pointer;
@@ -91,11 +96,21 @@ body {
 }
 
 .output-body .education {
-  padding: 2rem;
   display: flex;
   flex-direction: column;
+  padding: 2rem;
 }
 
 .output-body .education .education-tab {
   background: #f2f2f3;
+}
+
+.edu {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f2f2f3;
+  padding: 0.5rem;
+  border-radius: 1rem;
 }

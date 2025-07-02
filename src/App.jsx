@@ -49,6 +49,10 @@ function App() {
     setLocation("");
   };
 
+  const handleDeleteListEducational = (id) => {
+    setListEducation(listEducation.filter((edu) => edu.id !== id));
+  };
+
   const handleSetFullName = (e) => {
     setFullName(e.target.value);
   };
@@ -129,6 +133,8 @@ function App() {
           onSetEndDate={handleSetEndDate}
           onSetLocation={handleSetLocation}
           onAddEducation={handleSetListEducation}
+          onDeleteEducation={handleDeleteListEducational}
+          listEducation={listEducation}
         />
       </div>
       <div className="right">
